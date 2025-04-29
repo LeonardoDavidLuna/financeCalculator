@@ -52,8 +52,7 @@ El proyecto fue realizado en la universidad con la finalidad de conocer Android 
 
 ## Contacto
 
-Leonardo David Luna Nicolás
-[[Tu correo electrónico o enlace a tu perfil de GitHub]](https://github.com/LeonardoDavidLuna)
+Leonardo David Luna Nicolás (https://github.com/LeonardoDavidLuna)
 
 ---
 
