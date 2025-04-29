@@ -27,12 +27,13 @@
 
 ## Capturas de Pantalla
 ![Login](https://github.com/user-attachments/assets/92e1ca33-ac1b-4061-bf75-feba0656eaa1)![Registro](https://github.com/user-attachments/assets/e604228b-9874-49dd-a86c-c13155e29670)![Inicio](https://github.com/user-attachments/assets/ccdda17a-fc86-47fa-ab74-022a52e9cb99)
+
 ![Rubro](https://github.com/user-attachments/assets/e13d5d7f-398a-4985-9eba-25c8ecbcf35c)![Consulta](https://github.com/user-attachments/assets/a0229622-5285-4f61-ad78-6e6eddaef23e)![Actualizar ](https://github.com/user-attachments/assets/791a3747-6443-4346-ad70-187ad0076397)
 
 
 ## Cómo Utilizar
 
-1.  **Descarga e Instalación:** Descarga la aplicación desde aquí... próximamente.
+1.  **Descarga e Instalación:** Descarga la aplicación desde aquí: https://github.com/LeonardoDavidLuna/financeCalculator/blob/main/FinanceCalculator.apk
 2.  **Creación de Cuenta:** Al iniciar la aplicación por primera vez, se te pedirá crear una cuenta proporcionando los datos solicitados.
 3.  **Registro de Gastos:** Utiliza el formulario para ingresar tus gastos diarios, seleccionando la fecha, el monto y el rubro correspondiente.
 4.  **Visualización de Gastos:** Navega por las diferentes secciones para ver tus gastos diarios y mensuales.
