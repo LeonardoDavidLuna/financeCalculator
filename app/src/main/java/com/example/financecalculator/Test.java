@@ -1,17 +1,18 @@
 package com.example.financecalculator;
 
 import android.annotation.SuppressLint;
-import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity;
+
+public class Test extends AppCompatActivity
 {
     private EditText et1, et2;
     public final static String EXTRA_MESSAGE="";
@@ -57,21 +58,16 @@ public class MainActivity extends AppCompatActivity
                     this.finish();
                 }
             } else
-                Toast.makeText(this, "¡Número o Contraseña incorrectos!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "¡Número o Contraseña incorrectos!: ",Toast.LENGTH_SHORT).show();
             bd.close();
         }
     }
 
     //Ir al Registro de Usuario Nuevo
-    public void registro(View v)
+    private void registro(View v)
     {
         Intent ven=new Intent(this,Registro.class);
         startActivity(ven);
-        Toast.makeText(MainActivity.this, "¡Botón pulsado!", Toast.LENGTH_SHORT).show();
-    }
-    public void test(View v){
-        Intent ven=new Intent(this,Test.class);
-        startActivity(ven);
-        Toast.makeText(MainActivity.this, "¡Botón pulsado!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(Test.this, "¡Botón pulsado!", Toast.LENGTH_SHORT).show();
     }
 }

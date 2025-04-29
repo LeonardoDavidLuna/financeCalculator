@@ -24,10 +24,10 @@
     <Button
         android:id="@+id/btn_todo"
         android:layout_width="0dp"
-        android:layout_height="35sp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="45sp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/shape"
         android:onClick="vertodo"
         android:text="@string/btn_todo_string"
@@ -39,43 +39,46 @@
     <Button
         android:id="@+id/btn_mes"
         android:layout_width="0dp"
-        android:layout_height="35sp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="40sp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/shape"
         android:onClick="vermes"
         android:text="@string/btn_mes_string"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_todo" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editFecha"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="@string/eti_fecha_string"
         android:inputType="datetime"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_mes" />
 
     <Button
         android:id="@+id/btn_fecha"
         android:layout_width="0dp"
-        android:layout_height="35sp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="40sp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/shape"
         android:onClick="verfecha"
         android:text="@string/btn_fecha_string"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/editFecha" />
 
     <EditText
         android:id="@+id/editRubro"
@@ -93,9 +96,9 @@
     <Button
         android:id="@+id/btn_rubro"
         android:layout_width="0dp"
-        android:layout_height="35sp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="40sp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/shape"
         android:onClick="verrubro"
         android:text="@string/btn_rubro_string"

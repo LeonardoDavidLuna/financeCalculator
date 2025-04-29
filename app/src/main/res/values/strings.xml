@@ -5,6 +5,7 @@
     <string name="txt_contraseña_string">Contraseña</string>
     <string name="btn_iniciar_sesion_string">Iniciar Sesión</string>
     <string name="btn_registrate_string">Regístrate</string>
+    <string name="btn_test_string">TEST</string>
     <string name="txt_sin_cuenta_string">Sin Cuenta</string>
     <string name="eti_registro_string">Registro</string>
     <string name="btn_registrarse_string">Registrarse</string>

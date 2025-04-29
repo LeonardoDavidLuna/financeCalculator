@@ -5,8 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondoq"
-    tools:context=".MainActivity">
+    android:background="@drawable/fondod"
+    tools:context=".Test">
 
     <EditText
         android:id="@+id/editNumero"
@@ -28,47 +28,6 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editPassword"
-        android:layout_width="270sp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="8dp"
-        android:autofillHints="Contraseña"
-        android:ems="10"
-        android:fontFamily="@font/merienda_one"
-        android:hint="@string/txt_contraseña_string"
-        android:inputType="textPassword"
-        android:textColor="@color/white"
-        android:textSize="40sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editNumero" />
-
-    <Button
-        android:id="@+id/btn_entrar"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="137dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="137dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/shape"
-        android:fontFamily="sans-serif"
-        android:onClick="entrar"
-        android:text="@string/btn_iniciar_sesion_string"
-        android:textAlignment="center"
-        android:textColor="@android:color/background_light"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btn_registro"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editPassword" />
 
     <Button
         android:id="@+id/btn_registro"
@@ -93,26 +52,44 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_entrar" />
 
     <Button
-        android:id="@+id/btn_test"
-        android:layout_width="150dp"
+        android:id="@+id/btn_entrar"
+        android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginStart="137dp"
-        android:layout_marginTop="43dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="137dp"
-        android:layout_marginBottom="164dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/shape"
         android:fontFamily="sans-serif"
-        android:onClick="test"
-        android:text="@string/btn_test_string"
+        android:onClick="entrar"
+        android:text="@string/btn_iniciar_sesion_string"
         android:textAlignment="center"
         android:textColor="@android:color/background_light"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_registro"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_registro"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/editPassword" />
+
+    <EditText
+        android:id="@+id/editPassword"
+        android:layout_width="270sp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="8dp"
+        android:autofillHints="Contraseña"
+        android:ems="10"
+        android:fontFamily="@font/merienda_one"
+        android:hint="@string/txt_contraseña_string"
+        android:inputType="textPassword"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editNumero" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
