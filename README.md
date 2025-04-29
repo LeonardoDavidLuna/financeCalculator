@@ -26,7 +26,8 @@
 * **Diseño de Interfaz de Usuario (UI):** XML para la estructura y diseño de las pantallas.
 
 ## Capturas de Pantalla
-![Login](https://github.com/user-attachments/assets/92e1ca33-ac1b-4061-bf75-feba0656eaa1)![Registro](https://github.com/user-attachments/assets/e604228b-9874-49dd-a86c-c13155e29670)![Inicio](https://github.com/user-attachments/assets/ccdda17a-fc86-47fa-ab74-022a52e9cb99)![Rubro](https://github.com/user-attachments/assets/e13d5d7f-398a-4985-9eba-25c8ecbcf35c)![Consulta](https://github.com/user-attachments/assets/a0229622-5285-4f61-ad78-6e6eddaef23e)![Actualizar ](https://github.com/user-attachments/assets/791a3747-6443-4346-ad70-187ad0076397)
+![Login](https://github.com/user-attachments/assets/92e1ca33-ac1b-4061-bf75-feba0656eaa1)![Registro](https://github.com/user-attachments/assets/e604228b-9874-49dd-a86c-c13155e29670)![Inicio](https://github.com/user-attachments/assets/ccdda17a-fc86-47fa-ab74-022a52e9cb99)
+![Rubro](https://github.com/user-attachments/assets/e13d5d7f-398a-4985-9eba-25c8ecbcf35c)![Consulta](https://github.com/user-attachments/assets/a0229622-5285-4f61-ad78-6e6eddaef23e)![Actualizar ](https://github.com/user-attachments/assets/791a3747-6443-4346-ad70-187ad0076397)
 
 
 ## Cómo Utilizar
