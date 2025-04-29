@@ -27,7 +27,7 @@
 
 ## Capturas de Pantalla
 
-![image](https://github.com/user-attachments/assets/6cd4bc5d-d63e-4c9e-994f-dc58b01fa402)![image](https://github.com/user-attachments/assets/9ba523d2-b2fc-46de-81d4-b0bcdd00588a)![image](https://github.com/user-attachments/assets/afcf5635-18cb-4e32-abfe-219f7eb73add)![image](https://github.com/user-attachments/assets/88f6f79a-512c-45fe-b73e-668524043154)
+![Inicio](https://github.com/user-attachments/assets/8ed03b17-84e2-4e00-8bc1-042c5d51a696)![Consulta](https://github.com/user-attachments/assets/640b2e85-5f33-468a-a2e2-9b2d1c2bcf19)![Rubro](https://github.com/user-attachments/assets/7cf47cad-2a3b-403f-b7b4-d4e9d45110b0)![Actualizar Cuenta](https://github.com/user-attachments/assets/725fcae2-130d-4464-9e8e-8bdccb203d04)
 
 
 
