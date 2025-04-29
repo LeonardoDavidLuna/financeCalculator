@@ -22,8 +22,8 @@
     <string name="btn_restaurar_string">Restaurar</string>
     <string name="btn_volver_string">Volver</string>
     <string name="txt_config_string">Configuración</string>
-    <string name="btn_modificar_string">Modificar</string>
-    <string name="btn_borrar_cuenta_string">Borrar Cuenta</string>
+    <string name="btn_modificar_string">Actualizar</string>
+    <string name="btn_borrar_cuenta_string">Eliminar Cuenta</string>
     <string name="eti_consulta_string">Consulta</string>
     <string name="btn_todo_string">Todo</string>
     <string name="btn_mes_string">Mes</string>

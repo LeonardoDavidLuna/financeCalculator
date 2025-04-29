@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,5 +49,12 @@ public class Cuenta extends AppCompatActivity {
                 Toast.makeText(this, "No existe usuario con el número: "+numero,Toast.LENGTH_SHORT).show();
             bd.close();
         }
+    }
+    public void volver(View v)
+    {
+        Intent intent = getIntent();
+        Intent ven=new Intent(this,Usuario.class);
+        startActivity(ven);
+        this.finish();
     }
 }
