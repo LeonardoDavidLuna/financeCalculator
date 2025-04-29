@@ -40,6 +40,18 @@
 5.  **Filtrado de Gastos:** Utiliza las opciones de filtrado por fecha y rubro para analizar tus patrones de gasto.
 6.  **Gestión de Cuenta:** Accede a la sección de perfil para actualizar tus datos, consultar tu información o eliminar tu cuenta.
 
+
+## Próximas Funcionalidades
+
+* Login con botón de Google.
+* Categorización automática de gastos.
+* Generación de reportes gráficos para visualizar mejor tus finanzas.
+* Recordatorios de pagos.
+* Integración con servicios en la nube para sincronización de datos entre dispositivos.
+* Robustez y normalización de DB.
+* Corrección de bugs.
+
+
 ## Contribución
 
 Si deseas contribuir a este proyecto, eres bienvenido. Puedes realizar un fork del repositorio y enviar tus pull requests con mejoras o correcciones.
