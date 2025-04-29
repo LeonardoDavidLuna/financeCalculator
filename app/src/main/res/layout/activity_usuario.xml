@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondow"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btn_cuenta"
+        android:layout_width="70sp"
+        android:layout_height="35sp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/shape2"
+        android:onClick="cuenta"
+        android:text="@string/btn_cuenta_string"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_configuracion"
+        android:layout_width="123dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/shape2"
+        android:onClick="configuracion"
+        android:text="@string/btn_configuracion_string"
+        app:layout_constraintEnd_toStartOf="@+id/btn_cerrar"
+        app:layout_constraintStart_toEndOf="@+id/btn_cuenta"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_cerrar"
+        android:layout_width="70sp"
+        android:layout_height="35sp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/shape2"
+        android:onClick="salir"
+        android:text="@string/btn_salir_string"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/eti_Fecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Fecha"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.975"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_cerrar" />
+
+    <TextView
+        android:id="@+id/eti_Bienvenida"
+        android:layout_width="wrap_content"
+        android:layout_height="40sp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:text="@string/txt_bienvenido_string"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/edit_usuario"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eti_Fecha" />
+
+    <TextView
+        android:id="@+id/edit_usuario"
+        android:layout_width="300sp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Leonardo"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eti_Bienvenida" />
+
+    <TextView
+        android:id="@+id/eti_Saldo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/txt_saldo_actual_string"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/Saldo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_usuario" />
+
+    <TextView
+        android:id="@+id/Saldo"
+        android:layout_width="110sp"
+        android:layout_height="30sp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:text="0"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eti_Saldo" />
+
+    <TextView
+        android:id="@+id/eti_eventual"
+        android:layout_width="wrap_content"
+        android:layout_height="40sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/txt_ingreso_even_string"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Saldo" />
+
+    <EditText
+        android:id="@+id/editIngresoEventual"
+        android:layout_width="150sp"
+        android:layout_height="42sp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:text="0"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Saldo" />
+
+    <TextView
+        android:id="@+id/eti_periodico"
+        android:layout_width="wrap_content"
+        android:layout_height="40sp"
+        android:layout_marginStart="16dp"
+        android:text="@string/txt_ingreso_period_string"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eti_eventual" />
+
+    <EditText
+        android:id="@+id/editIngresoPeriodico"
+        android:layout_width="150sp"
+        android:layout_height="42sp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:text="0"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editIngresoEventual" />
+
+    <Button
+        android:id="@+id/btn_Sumar"
+        android:layout_width="77dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/shape2"
+        android:onClick="sumar"
+        android:text="@string/txt_sumar_string"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eti_periodico" />
+
+    <TextView
+        android:id="@+id/eti_Gasto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/txt_gastos_mes_string"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Sumar" />
+
+    <TextView
+        android:id="@+id/Gasto"
+        android:layout_width="110sp"
+        android:layout_height="30sp"
+        android:layout_marginStart="16dp"
+        android:text="0"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eti_Gasto" />
+
+    <TextView
+        android:id="@+id/eti_Alerta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Alerta"
+        android:textColor="@android:color/white"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Gasto"
+        app:layout_constraintVertical_bias="0.19999999" />
+
+    <Button
+        android:id="@+id/btn_Gasto"
+        android:layout_width="105sp"
+        android:layout_height="35sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/shape2"
+        android:onClick="entrada"
+        android:text="@string/btn_nuevo_gasto_string"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eti_Alerta"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/btn_Consultar"
+        android:layout_width="145sp"
+        android:layout_height="35sp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/shape2"
+        android:onClick="consultar"
+        android:text="@string/btn_consul_gast_string"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eti_Alerta"
+        app:layout_constraintVertical_bias="1.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

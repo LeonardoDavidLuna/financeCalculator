@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="btn_configuracion" type="id">Configuración</item>
+    <item name="btn_cuenta" type="id">Cuenta</item>
+    <item name="btn_cerrar" type="id">Cerrar</item>
+    <item name="eti_Fecha" type="id">Fecha</item>
+    <item name="eti_Bienvenida" type="id">Bienvenida</item>
+    <item name="edit_usuario" type="id">Usuario</item>
+    <item name="eti_Saldo" type="id">Saldo</item>
+    <item name="Saldo" type="id">Saldo</item>
+    <item name="eti_eventual" type="id">Eventual</item>
+    <item name="editIngresoEventual" type="id">Ingreso Eventual</item>
+    <item name="eti_periodico" type="id">Periódico</item>
+    <item name="editIngresoPeriodico" type="id">Ingreso Periódico</item>
+    <item name="btn_Sumar" type="id">Sumar</item>
+    <item name="eti_Gasto" type="id">Gasto</item>
+    <item name="Gasto" type="id">Gasto</item>
+    <item name="eti_Alerta" type="id">Alerta</item>
+    <item name="btn_Gasto" type="id">Gasto</item>
+    <item name="btn_Consultar" type="id">Cosultar</item>
+</resources>
