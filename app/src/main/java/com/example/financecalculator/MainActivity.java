@@ -67,10 +67,6 @@ public class MainActivity extends AppCompatActivity
     {
         Intent ven=new Intent(this,Registro.class);
         startActivity(ven);
-        Toast.makeText(MainActivity.this, "¡Botón pulsado!", Toast.LENGTH_SHORT).show();
-    }
-    public void test(View v){
-        Intent ven=new Intent(this,Test.class);
-        startActivity(ven);
+        //Toast.makeText(MainActivity.this, "¡Botón pulsado!", Toast.LENGTH_SHORT).show();
     }
 }
