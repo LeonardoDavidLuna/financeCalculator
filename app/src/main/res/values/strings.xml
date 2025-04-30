@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">financeCalculator</string>
+    <string name="app_name">Calculadora de Finanzas</string>
     <string name="txt_login_string">Login</string>
     <string name="txt_numero_string">Número</string>
     <string name="txt_contraseña_string">Contraseña</string>
@@ -8,7 +8,7 @@
     <string name="btn_test_string">TEST</string>
     <string name="txt_sin_cuenta_string">Sin Cuenta</string>
     <string name="eti_registro_string">Registro</string>
-    <string name="btn_registrarse_string">Registrarse</string>
+    <string name="btn_registrarse_string">Crear cuenta</string>
     <string name="eti_nombre_string">Nombre</string>
     <string name="eti_saldo_string">Saldo</string>
     <string name="eti_correo_string">Correo</string>
@@ -16,7 +16,7 @@
     <string name="eti_gastos_string">Gastos</string>
     <string name="eti_rubro_string">Rubro</string>
     <string name="eti_costo_string">Costo</string>
-    <string name="eti_fecha_string">Fecha</string>
+    <string name="eti_fecha_string">Fecha (01/12/25)</string>
     <string name="btn_guardar_string">Guardar</string>
     <string name="btn_borrar_mes_string">Borrar Mes</string>
     <string name="btn_restaurar_string">Restaurar</string>
