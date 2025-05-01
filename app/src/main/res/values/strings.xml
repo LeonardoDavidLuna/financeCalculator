@@ -19,6 +19,7 @@
     <string name="eti_rubro_string">Rubro</string>
     <string name="eti_costo_string">Costo</string>
     <string name="eti_fecha_string">Fecha (01/12/25)</string>
+    <string name="eti_categoria_string">Categoría</string>
     <string name="btn_guardar_string">Guardar</string>
     <string name="btn_borrar_mes_string">Borrar Mes</string>
     <string name="btn_restaurar_string">Restaurar</string>

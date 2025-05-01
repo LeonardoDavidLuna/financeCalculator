@@ -47,7 +47,7 @@
         tools:layout_conversion_absoluteWidth="0dp" />
 
     <EditText
-        android:id="@+id/edit_Nombre"
+        android:id="@+id/edit_Name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -78,12 +78,12 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_Nombre"
+        app:layout_constraintTop_toBottomOf="@+id/edit_Name"
         tools:layout_conversion_absoluteHeight="0dp"
         tools:layout_conversion_absoluteWidth="0dp" />
 
     <EditText
-        android:id="@+id/edit_Correo"
+        android:id="@+id/edit_Email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -114,7 +114,7 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_Correo"
+        app:layout_constraintTop_toBottomOf="@+id/edit_Email"
         tools:layout_conversion_absoluteHeight="0dp"
         tools:layout_conversion_absoluteWidth="0dp" />
 

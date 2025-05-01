@@ -42,6 +42,7 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper
                 lista.add(registros.getString(1));
                 lista.add(registros.getString(2));
                 lista.add(registros.getString(3));
+                lista.add(registros.getString(4));
             }while(registros.moveToNext());
         }
         return lista;
@@ -67,6 +68,7 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper
                 lista.add(registros.getString(1));
                 lista.add(registros.getString(2));
                 lista.add(registros.getString(3));
+                lista.add(registros.getString(4));
             }while(registros.moveToNext());
         }
         return lista;
@@ -84,6 +86,7 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper
                 lista.add(registros.getString(1));
                 lista.add(registros.getString(2));
                 lista.add(registros.getString(3));
+                lista.add(registros.getString(4));
             }while(registros.moveToNext());
         }
         return lista;
@@ -101,6 +104,7 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper
                 lista.add(registros.getString(1));
                 lista.add(registros.getString(2));
                 lista.add(registros.getString(3));
+                lista.add(registros.getString(4));
             }while(registros.moveToNext());
         }
         return lista;

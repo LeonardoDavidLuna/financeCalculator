@@ -21,9 +21,9 @@ public class Registro extends AppCompatActivity
         setContentView(R.layout.activity_registro);
 
         etNumber = findViewById(R.id.editNumber);
-        etName = findViewById(R.id.edit_Nombre);
+        etName = findViewById(R.id.edit_Name);
         etSaldo = findViewById(R.id.edit_Saldo);
-        etEmail = findViewById(R.id.edit_Correo);
+        etEmail = findViewById(R.id.edit_Email);
         etPassword = findViewById(R.id.editPassword);
         etRePassword = findViewById(R.id.editRePassword);
     }

@@ -55,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@+id/eti_Configuracion" />
 
     <TextView
-        android:id="@+id/etiNumero"
+        android:id="@+id/etiNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -80,10 +80,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etiNumero" />
+        app:layout_constraintTop_toBottomOf="@+id/etiNumber" />
 
     <TextView
-        android:id="@+id/etiNombre"
+        android:id="@+id/etiName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -108,7 +108,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etiNombre" />
+        app:layout_constraintTop_toBottomOf="@+id/etiName" />
 
     <TextView
         android:id="@+id/etiSaldo"
@@ -152,10 +152,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etiCorreo" />
+        app:layout_constraintTop_toBottomOf="@+id/etiEmail" />
 
     <TextView
-        android:id="@+id/etiCorreo"
+        android:id="@+id/etiEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -168,7 +168,7 @@
         app:layout_constraintTop_toBottomOf="@+id/label_correo" />
 
     <TextView
-        android:id="@+id/etiContraseña"
+        android:id="@+id/etiPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
