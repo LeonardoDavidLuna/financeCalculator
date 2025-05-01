@@ -54,7 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editFecha" />
+        app:layout_constraintTop_toBottomOf="@+id/editDate" />
 
     <EditText
         android:id="@+id/editCosto"
@@ -73,7 +73,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editCompra" />
 
     <EditText
-        android:id="@+id/editFecha"
+        android:id="@+id/editDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"

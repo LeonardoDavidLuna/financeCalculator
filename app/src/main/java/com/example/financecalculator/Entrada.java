@@ -34,7 +34,7 @@ public class Entrada extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrada);
 
-        etDate = findViewById(R.id.editFecha);
+        etDate = findViewById(R.id.editDate);
         etPurchase = findViewById(R.id.editCompra);
         etCost = findViewById(R.id.editCosto);
         etCategory = findViewById(R.id.editCategoria);

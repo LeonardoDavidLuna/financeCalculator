@@ -49,4 +49,6 @@
     <string name="btn_fecha_string">Fecha</string>
     <string name="btn_rubro_string">Rubro</string>
     <string name="txt_cuenta_string">Cuenta</string>
+    <string name="txt_allEntries_string">Todas las Entradas</string>
+    <string name="txt_month_string">Mes</string>
 </resources>

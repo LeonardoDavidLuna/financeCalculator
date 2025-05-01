@@ -1,6 +1,7 @@
 package com.example.financecalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,78 +13,80 @@ import java.util.ArrayList;
 
 public class Consultar extends AppCompatActivity
 {
-    private EditText fecha, rubro;
-    private TextView Aviso;
+    private EditText date, entry;
+    private TextView Notice;
     private ListView lvA;
-    ArrayList<String> lista;
-    ArrayAdapter adaptador;
+    ArrayList list;
+    ArrayAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultar);
-        fecha = (EditText) findViewById(R.id.editFecha);
-        rubro = (EditText) findViewById(R.id.editRubro);
-        lvA = (ListView) findViewById(R.id.listaA);
-        Aviso = (TextView) findViewById(R.id.eti_Aviso);
+        date = findViewById(R.id.editDate);
+        entry = findViewById(R.id.editEntry);
+        lvA = findViewById(R.id.listItems);
+        Notice = findViewById(R.id.eti_Notice);
     }
-    //Función para Consultar Todos los Gastos
-    public void vertodo(View v)
+    //Consulta Todos los Gastos
+    public void getAllPayments(View v)
     {
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "Tabla2", null, 1);
-        lista = admin.llenar();
-        adaptador = new ArrayAdapter(this, android.R.layout.simple_list_item_1, lista);
-        lvA.setAdapter(adaptador);
-        Aviso.setText("Todas las Entradas");
+        list = admin.fillPaymentList();
+        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
+        lvA.setAdapter(adapter);
+        //Muestra mensaje de qué tipo de consulta se realizó
+        Notice.setText(R.string.txt_allEntries_string);
     }
-    //Función para filtrar los datos por Mes
-    public void vermes(View v)
+    //Filtra datos por Mes
+    public void getMonthPayments(View v)
     {
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "Tabla2", null, 1);
-        lista = admin.llenar4();
-        adaptador = new ArrayAdapter(this, android.R.layout.simple_list_item_1, lista);
-        lvA.setAdapter(adaptador);
-        Aviso.setText("Mes");
+        list = admin.fillPaymentListByMonth();
+        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
+        lvA.setAdapter(adapter);
+        Notice.setText(R.string.txt_month_string);
     }
-    //Función para filtrar por Fecha
-    public void verfecha(View v)
+    //Filtra datos por Fecha
+    public void getPaymentsByDate(View v)
     {
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "Tabla2", null, 1);
-        String consulta = fecha.getText().toString();
+        String consulta = date.getText().toString();
 
-        if(fecha.getText().toString().equals(""))
+        if(date.getText().toString().isEmpty())
         {
             Toast.makeText(this, "Escribe una fecha", Toast.LENGTH_SHORT).show();
         }
         else
         {
-            lista = admin.llenar2(consulta);
-            adaptador = new ArrayAdapter(this, android.R.layout.simple_list_item_1, lista);
-            lvA.setAdapter(adaptador);
+            list = admin.fillPaymentListByDate(consulta);
+            adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
+            lvA.setAdapter(adapter);
 
-            String titulo = fecha.getText().toString();
-            Aviso.setText("Fecha "+titulo);
+            String title = date.getText().toString();
+            Notice.setText("Fecha "+title);
         }
     }
-    //Función para filtrar por Rubro
-    public void verrubro(View v)
+    //Filtra por Rubro
+    @SuppressLint("SetTextI18n")
+    public void getPaymentsByEntry(View v)
     {
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "Tabla2", null, 1);
 
-        String consulta = rubro.getText().toString();
+        String consulta = entry.getText().toString();
 
-        if(rubro.getText().toString().equals(""))
+        if(entry.getText().toString().isEmpty())
         {
             Toast.makeText(this, "Escribe un rubro", Toast.LENGTH_SHORT).show();
         }else
         {
-            lista = admin.llenar3(consulta);
-            adaptador = new ArrayAdapter(this, android.R.layout.simple_list_item_1, lista);
-            lvA.setAdapter(adaptador);
+            list = admin.fillPaymentListByEntry(consulta);
+            adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,list);
+            lvA.setAdapter(adapter);
 
-            String titulo = rubro.getText().toString();
-            Aviso.setText("Rubro "+titulo);
+            String title = entry.getText().toString();
+            Notice.setText("Rubro "+title);
         }
     }
 }

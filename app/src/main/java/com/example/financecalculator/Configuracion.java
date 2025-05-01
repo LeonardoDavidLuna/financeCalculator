@@ -70,6 +70,7 @@ public class Configuracion extends AppCompatActivity
             makeText(this, "Escribe un número primero",Toast.LENGTH_SHORT).show();
         }else
         {
+            //Se consulta el usuario para validar su existencia
             int cant = bd.delete("usuario", "numero=" + numero, null);
             bd.close();
             //Limpia los campos después borrar
