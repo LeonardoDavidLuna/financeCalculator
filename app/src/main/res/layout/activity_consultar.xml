@@ -22,14 +22,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_todo"
+        android:id="@+id/btn_getAllPayments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/shape"
-        android:onClick="vertodo"
+        android:onClick="getAllPayments"
         android:text="@string/btn_todo_string"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,22 +37,22 @@
         app:layout_constraintTop_toBottomOf="@+id/eti_Consulta" />
 
     <Button
-        android:id="@+id/btn_mes"
+        android:id="@+id/btn_getByMonth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/shape"
-        android:onClick="vermes"
+        android:onClick="getMonthPayments"
         android:text="@string/btn_mes_string"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_todo" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_getAllPayments" />
 
     <EditText
-        android:id="@+id/editFecha"
+        android:id="@+id/editDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -66,25 +66,25 @@
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_mes" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_getByMonth" />
 
     <Button
-        android:id="@+id/btn_fecha"
+        android:id="@+id/btn_getByDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/shape"
-        android:onClick="verfecha"
+        android:onClick="getPaymentsByDate"
         android:text="@string/btn_fecha_string"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editFecha" />
+        app:layout_constraintTop_toBottomOf="@+id/editDate" />
 
     <EditText
-        android:id="@+id/editRubro"
+        android:id="@+id/editEntry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -98,25 +98,25 @@
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_fecha" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_getByDate" />
 
     <Button
-        android:id="@+id/btn_rubro"
+        android:id="@+id/btn_getByEntry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/shape"
-        android:onClick="verrubro"
+        android:onClick="getPaymentsByEntry"
         android:text="@string/btn_rubro_string"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editRubro" />
+        app:layout_constraintTop_toBottomOf="@+id/editEntry" />
 
     <TextView
-        android:id="@+id/eti_Aviso"
+        android:id="@+id/eti_Notice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -127,7 +127,7 @@
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_rubro" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_getByEntry" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -141,10 +141,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eti_Aviso">
+        app:layout_constraintTop_toBottomOf="@+id/eti_Notice">
 
         <ListView
-            android:id="@+id/listaA"
+            android:id="@+id/listItems"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"

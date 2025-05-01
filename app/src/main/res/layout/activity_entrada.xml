@@ -40,6 +40,23 @@
         app:layout_constraintTop_toBottomOf="@+id/eti_Registro" />
 
     <EditText
+        android:id="@+id/editCategoria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="25dp"
+        android:hint="@string/eti_categoria_string"
+        android:inputType="textCapWords"
+        android:textColor="@android:color/background_light"
+        android:textColorHint="@android:color/background_light"
+        android:textSize="35sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editDate" />
+
+    <EditText
         android:id="@+id/editCosto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,7 +73,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editCompra" />
 
     <EditText
-        android:id="@+id/editFecha"
+        android:id="@+id/editDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -80,7 +97,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="2dp"
         android:background="@drawable/shape"
-        android:onClick="alta"
+        android:onClick="newPayment"
         android:text="@string/btn_guardar_string"
         android:textColor="@android:color/background_light"
         android:textSize="18sp"
@@ -96,7 +113,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/shape"
-        android:onClick="volver"
+        android:onClick="back"
         android:text="@string/btn_volver_string"
         android:textColor="@android:color/background_light"
         android:textSize="18sp"
@@ -110,9 +127,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="61dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/shape"
-        android:onClick="bajaTodo"
+        android:onClick="deleteAllPayments"
         android:text="@string/btn_restaurar_string"
         android:textColor="@android:color/background_light"
         android:textSize="18sp"
@@ -128,7 +145,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="2dp"
         android:background="@drawable/shape"
-        android:onClick="bajaMes"
+        android:onClick="deleteMonth"
         android:text="@string/btn_borrar_mes_string"
         android:textColor="@android:color/background_light"
         android:textSize="18sp"

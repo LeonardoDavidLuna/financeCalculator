@@ -1,5 +1,6 @@
 package com.example.financecalculator;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -11,18 +12,17 @@ import android.widget.Toast;
 
 public class Cuenta extends AppCompatActivity {
 
-    private TextView et1, et2, et3, et4, et5;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cuenta);
 
-        et1 = (TextView) findViewById(R.id.etiNumero);
-        et2 = (TextView) findViewById(R.id.etiNombre);
-        et3 = (TextView) findViewById(R.id.etiSaldo);
-        et4 = (TextView) findViewById(R.id.etiCorreo);
-        et5 = (TextView) findViewById(R.id.etiContraseña);
+        TextView etNumber = findViewById(R.id.etiNumber);
+        TextView etName = findViewById(R.id.etiName);
+        TextView etSaldo = findViewById(R.id.etiSaldo);
+        TextView etEmail = findViewById(R.id.etiEmail);
+        TextView etPassword = findViewById(R.id.etiPassword);
 
         Intent intent = getIntent();
         String numero = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
@@ -30,19 +30,20 @@ public class Cuenta extends AppCompatActivity {
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"administracion", null, 1);
         SQLiteDatabase bd = admin.getReadableDatabase();
 
-        if(numero.equals(""))//Verificamos que no esté vacío el campo
+        assert numero != null;
+        if(numero.isEmpty())//Verificamos que no esté vacío el campo
         {
             Toast.makeText(this, "Escribe un número primero",Toast.LENGTH_SHORT).show();
         }
         else{
-            Cursor fila = bd.rawQuery("select numero, nombre, saldo, correo, contraseña from usuario where numero=" + numero, null);
+            @SuppressLint("Recycle") Cursor fila = bd.rawQuery("select numero, nombre, saldo, correo, contraseña from usuario where numero=" + numero, null);
             if (fila.moveToFirst())
             {
-                et1.setText(fila.getString(0));
-                et2.setText(fila.getString(1));
-                et3.setText(fila.getString(2));
-                et4.setText(fila.getString(3));
-                et5.setText(fila.getString(4));
+                etNumber.setText(fila.getString(0));
+                etName.setText(fila.getString(1));
+                etSaldo.setText(fila.getString(2));
+                etEmail.setText(fila.getString(3));
+                etPassword.setText(fila.getString(4));
                 bd.close();
 
             } else
@@ -52,7 +53,7 @@ public class Cuenta extends AppCompatActivity {
     }
     public void volver(View v)
     {
-        Intent intent = getIntent();
+        //Intent intent = getIntent();
         Intent ven=new Intent(this,Usuario.class);
         startActivity(ven);
         this.finish();

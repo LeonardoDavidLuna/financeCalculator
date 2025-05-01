@@ -1,5 +1,6 @@
 package com.example.financecalculator;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,13 +16,14 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper
     {
         super(context, nombre, factory, version);
     }
-    //Definimos las tablas a usar
+    //Define las tablas a usar
     @Override
     public void onCreate(SQLiteDatabase db)
     {
-        //aquí creamos la tabla de usuario (dni, nombre, ciudad, numero)
-        db.execSQL("CREATE TABLE usuario(numero integer PRIMARY KEY, nombre text, saldo integer, correo text, contraseña text)");
-        db.execSQL("CREATE TABLE gastos(id integer PRIMARY KEY AUTOINCREMENT NOT NULL, fecha text, compra text, costo integer)");
+        //Sentencias para crear tabla usuario (id, número, nombre, saldo, correo, contraseña)
+        //Sentencias para crear tabla gastos  (id, fecha, compra, costo, categoría)
+        db.execSQL("CREATE TABLE usuario(id integer PRIMARY KEY AUTOINCREMENT NOT NULL, numero integer, nombre text, saldo integer, correo text, contraseña text)");
+        db.execSQL("CREATE TABLE gastos (id integer PRIMARY KEY AUTOINCREMENT NOT NULL, fecha text, compra text, costo integer, categoria text)");
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int version1, int version2)
@@ -30,79 +32,81 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper
         db.execSQL("DROP TABLE IF EXISTS gastos");
         onCreate(db);
     }
-    //Filtrar la ListView por Todo
-    public ArrayList llenar()
+    //Filtra ListView por Todo
+    public ArrayList fillPaymentList()
     {
-        ArrayList<String> lista = new ArrayList<>();
+        ArrayList<String> list = new ArrayList<>();
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor registros = database.rawQuery("SELECT * FROM gastos",null);
-        if(registros.moveToFirst())
+        Cursor registers = database.rawQuery("SELECT * FROM gastos",null);
+        if(registers.moveToFirst())
         {
             do{
-                lista.add(registros.getString(1));
-                lista.add(registros.getString(2));
-                lista.add(registros.getString(3));
-            }while(registros.moveToNext());
+                list.add(registers.getString(1));
+                list.add(registers.getString(2));
+                list.add(registers.getString(3));
+                list.add(registers.getString(4));
+            }while(registers.moveToNext());
         }
-        return lista;
+        return list;
     }
     //Consultar por Mes
-    public ArrayList llenar4()
+    public ArrayList fillPaymentListByMonth()
     {
         //Fecha para consultar
-        long ahora = System.currentTimeMillis();
-        Date fecha2 = new Date(ahora);
-        DateFormat df = new SimpleDateFormat("dd/MM/yy");
-        String salida = df.format(fecha2);
+        long now = System.currentTimeMillis();
+        Date reNow = new Date(now);
+        @SuppressLint("SimpleDateFormat") DateFormat df = new SimpleDateFormat("dd/MM/yy");
+        String salida = df.format(reNow);
 
-        //Obtenemos el mes actual para buscarlo después
-        String subFecha = salida.substring(3,5);
+        //Obtiene Mes actual para buscarlo después
+        String subDate = salida.substring(3,5);
 
-        ArrayList<String> lista = new ArrayList<>();
+        ArrayList<String> list = new ArrayList<>();
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor registros = database.rawQuery("SELECT * FROM gastos WHERE fecha LIKE '__%"+subFecha+"%__'", null);
-        if(registros.moveToFirst())
+        @SuppressLint("Recycle") Cursor registers = database.rawQuery("SELECT * FROM gastos WHERE fecha LIKE '__%"+subDate+"%__'", null);
+        if(registers.moveToFirst())
         {
             do{
-                lista.add(registros.getString(1));
-                lista.add(registros.getString(2));
-                lista.add(registros.getString(3));
-            }while(registros.moveToNext());
+                list.add(registers.getString(1));
+                list.add(registers.getString(2));
+                list.add(registers.getString(3));
+                list.add(registers.getString(4));
+            }while(registers.moveToNext());
         }
-        return lista;
+        return list;
     }
-    //Filtrar la ListView por Fecha
-    public ArrayList llenar2(String consulta)
+    //Filtra la ListView por Fecha
+    public ArrayList fillPaymentListByDate(String consulta)
     {
-        ArrayList<String> lista = new ArrayList<>();
+        ArrayList<String> list = new ArrayList<>();
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor registros = database.rawQuery("SELECT * FROM gastos WHERE fecha='"+consulta+"'",null);
-        if(registros.moveToFirst())
+        Cursor registers = database.rawQuery("SELECT * FROM gastos WHERE fecha='"+consulta+"'",null);
+        if(registers.moveToFirst())
         {
             do{
-                //lista.add(registros.getString(0));
-                lista.add(registros.getString(1));
-                lista.add(registros.getString(2));
-                lista.add(registros.getString(3));
-            }while(registros.moveToNext());
+                list.add(registers.getString(1));
+                list.add(registers.getString(2));
+                list.add(registers.getString(3));
+                list.add(registers.getString(4));
+            }while(registers.moveToNext());
         }
-        return lista;
+        return list;
     }
-    //Filtrar la ListView por Compra
-    public ArrayList llenar3(String consulta)
+    //Filtra la ListView por Compra
+    public ArrayList fillPaymentListByEntry(String consulta)
     {
-        ArrayList<String> lista = new ArrayList<>();
+        ArrayList<String> list = new ArrayList<>();
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor registros = database.rawQuery("SELECT * FROM gastos WHERE compra='"+consulta+"'",null);
-        if(registros.moveToFirst())
+        Cursor registers = database.rawQuery("SELECT * FROM gastos WHERE compra='"+consulta+"'",null);
+        if(registers.moveToFirst())
         {
             do{
-                //lista.add(registros.getString(0));
-                lista.add(registros.getString(1));
-                lista.add(registros.getString(2));
-                lista.add(registros.getString(3));
-            }while(registros.moveToNext());
+                list.add(registers.getString(1));
+                list.add(registers.getString(2));
+                list.add(registers.getString(3));
+                list.add(registers.getString(4));
+            }while(registers.moveToNext());
         }
-        return lista;
+        return list;
     }
 }

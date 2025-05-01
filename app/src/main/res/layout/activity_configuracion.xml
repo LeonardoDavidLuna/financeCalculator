@@ -46,7 +46,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/shape"
-        android:onClick="modificacion"
+        android:onClick="updateAccount"
         android:text="@string/btn_modificar_string"
         android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toTopOf="@+id/btn_eliminar"
@@ -77,7 +77,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/shape"
-        android:onClick="baja"
+        android:onClick="deleteAccount"
         android:text="@string/btn_borrar_cuenta_string"
         android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toTopOf="@+id/btn_regresar"
@@ -100,7 +100,7 @@
         app:layout_constraintTop_toBottomOf="@+id/eti_Configuracion" />
 
     <TextView
-        android:id="@+id/text_Numero"
+        android:id="@+id/edit_Number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -125,10 +125,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_Numero" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_Number" />
 
     <EditText
-        android:id="@+id/edit_Nombre"
+        android:id="@+id/edit_Name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -154,7 +154,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_Nombre" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_Name" />
 
     <EditText
         android:id="@+id/edit_Saldo"
@@ -186,7 +186,7 @@
         app:layout_constraintTop_toBottomOf="@+id/edit_Saldo" />
 
     <EditText
-        android:id="@+id/edit_Correo"
+        android:id="@+id/edit_Email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -212,10 +212,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_Correo" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_Email" />
 
     <EditText
-        android:id="@+id/edit_Contraseña"
+        android:id="@+id/edit_Password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
