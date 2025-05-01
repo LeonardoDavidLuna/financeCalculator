@@ -14,7 +14,7 @@
     <item name="editIngresoPeriodico" type="id" />
     <item name="btn_Sumar" type="id" />
     <item name="eti_Gasto" type="id" />
-    <item name="Gasto" type="id" />
+    <item name="tvSpent" type="id" />
     <item name="eti_Alerta" type="id" />
     <item name="btn_Gasto" type="id" />
     <item name="btn_Consultar" type="id" />

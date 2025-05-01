@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
 {
-    private EditText et1, et2;
+    private EditText etNumber, etPassword;
     public final static String EXTRA_MESSAGE="";
 
     @Override
@@ -23,50 +23,57 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // proviene del layout, son los campos de texto
-        et1 = (EditText) findViewById(R.id.editNumero);
-        et2 = (EditText) findViewById(R.id.editPassword);
+        etNumber = findViewById(R.id.editNumber);
+        etPassword = findViewById(R.id.editPassword);
     }
 
-    //Función para loguearte
-    public void entrar(View v)
+    //Función para login.
+    public void login(View v)
     {
+        //Abre conexión a DB
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"administracion", null, 1);
         SQLiteDatabase bd = admin.getReadableDatabase();
 
-        String numero       = et1.getText().toString();
-        String contraseña   = et2.getText().toString();
+        String number   = etNumber.getText().toString();
+        String password = etPassword.getText().toString();
 
-        if(et1.getText().toString().isEmpty() || et2.getText().toString().isEmpty())//Verificamos que no esté vacío el campo
+        //Validación de campos vacíos
+        if(etNumber.getText().toString().isEmpty() || etPassword.getText().toString().isEmpty())
         {
             Toast.makeText(this, "Escribe tu número y contraseña",Toast.LENGTH_SHORT).show();
         }
         else
-        {//Hacemos la consulta seleccionando solo número y contraseña
-            @SuppressLint("Recycle") Cursor fila=bd.rawQuery("select numero, contraseña from usuario where numero='"+numero+"' and contraseña='"+contraseña+"'",null);
+        {//Se consulta por medio de número y contraseña.
+            @SuppressLint("Recycle") Cursor fila = bd.rawQuery("select numero, contraseña, nombre from usuario where numero = '"+number+"' and contraseña ='"+password+"'",null);
 
             if (fila.moveToFirst())
             {
-                String num  = fila.getString(0);
-                String pass = fila.getString(1);
-                if (numero.equals(num)&&contraseña.equals(pass))
+                //Guarda el id para usarse después
+                //String nombre = fila.getString(fila.getColumnIndexOrThrow("nombre"));
+                String num = fila.getString(fila.getColumnIndexOrThrow("numero"));
+                String pass = fila.getString(fila.getColumnIndexOrThrow("contraseña"));
+                //Toast.makeText(this, "¡Tu Nombre es:"+nombre,Toast.LENGTH_SHORT).show();
+
+                //Valida credenciales
+                if (number.equals(num) && password.equals(pass))
                 {
-                    Intent ven=new Intent(this,Usuario.class);
+                    bd.close();
+                    //Inicia vista de Usuario
+                    Intent ven = new Intent(this, Usuario.class);
                     ven.putExtra(EXTRA_MESSAGE, num);
                     startActivity(ven);
                     this.finish();
                 }
-            } else
-                Toast.makeText(this, "¡Número o Contraseña incorrectos!",Toast.LENGTH_SHORT).show();
-            bd.close();
+            }else
+                Toast.makeText(this, "¡Número o contraseña incorrectos!",Toast.LENGTH_SHORT).show();
+
         }
     }
 
-    //Ir al Registro de Usuario Nuevo
+    //Vista para Registrar Usuario
     public void registro(View v)
     {
         Intent ven=new Intent(this,Registro.class);
         startActivity(ven);
-        //Toast.makeText(MainActivity.this, "¡Botón pulsado!", Toast.LENGTH_SHORT).show();
     }
 }
