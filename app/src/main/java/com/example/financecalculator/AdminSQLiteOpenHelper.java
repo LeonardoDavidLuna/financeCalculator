@@ -20,8 +20,8 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper
     public void onCreate(SQLiteDatabase db)
     {
         //aquí creamos la tabla de usuario (dni, nombre, ciudad, numero)
-        db.execSQL("CREATE TABLE usuario(numero integer PRIMARY KEY, nombre text, saldo integer, correo text, contraseña text)");
-        db.execSQL("CREATE TABLE gastos(id integer PRIMARY KEY AUTOINCREMENT NOT NULL, fecha text, compra text, costo integer)");
+        db.execSQL("CREATE TABLE usuario(id integer PRIMARY KEY AUTOINCREMENT NOT NULL, numero integer, nombre text, saldo integer, correo text, contraseña text)");
+        db.execSQL("CREATE TABLE gastos (id integer PRIMARY KEY AUTOINCREMENT NOT NULL, fecha text, compra text, costo integer, categoria text)");
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int version1, int version2)
