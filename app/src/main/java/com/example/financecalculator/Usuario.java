@@ -1,8 +1,6 @@
 package com.example.financecalculator;
 
-import static android.widget.Toast.makeText;
-
-//import static com.example.financecalculator.MainActivity.ID_USUARIO;
+import static com.example.financecalculator.MainActivity.ID_USUARIO;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -20,84 +18,135 @@ import java.util.Date;
 
 public class Usuario extends AppCompatActivity
 {
-    private TextView Saldo;
-    private TextView Alert;
+    private TextView Name, Saldo, Gasto, Alert, Date;
     private EditText IngresoEventual, IngresoPeriodico;
     int sumatoria=0, numtotal;
     int numEventual, numPeriodico;
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"Range", "SetTextI18n"})
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuario);
 
-        Intent intent = getIntent();
-        String ID = intent.getStringExtra(MainActivity.ID_USUARIO);
-
-        TextView date = findViewById(R.id.eti_Fecha);
-        TextView name = findViewById(R.id.edit_usuario);
+        Date = findViewById(R.id.eti_Fecha);
+        Name = findViewById(R.id.edit_usuario);
         Saldo = findViewById(R.id.Saldo);
-        TextView spent = findViewById(R.id.tvSpent);
+        Gasto = findViewById(R.id.tvSpent);
         Alert = findViewById(R.id.eti_Alerta);
         IngresoEventual = findViewById(R.id.editIngresoEventual);
         IngresoPeriodico = findViewById(R.id.editIngresoPeriodico);
 
+        //Obtiene ID de la Main Activity
+        Intent intent = getIntent();
+        String ID = intent.getStringExtra(MainActivity.ID_USUARIO);
+
+        Toast.makeText(this, "El ID del usuario en Usuario es: "+ID,Toast.LENGTH_SHORT).show();
         //Obtiene Fecha Actual
-        Date d = new Date();
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat fecha = new SimpleDateFormat("d, MMMM 'del' yyyy");
+        Date d =new Date();
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat fecha=new SimpleDateFormat("d, MMMM 'del' yyyy");
         String fechacComplString = fecha.format(d);
-        date.setText(fechacComplString);
+        Date.setText(fechacComplString);
 
         //Fecha para consultar Saldo Total
-        long ahora = System.currentTimeMillis();
-        Date fecha2 = new Date(ahora);
+        long now = System.currentTimeMillis();
+        Date fecha2 = new Date(now);
         @SuppressLint("SimpleDateFormat") DateFormat df = new SimpleDateFormat("dd/MM/yy");
         String salida = df.format(fecha2);
 
-        //Obtiene mes actual para buscarlo después
+        //Obtiene el mes actual para buscarlo después
         String subFecha = salida.substring(3,5);
 
-        //Valida campo no vacío
-        makeText(this, "El ID de usuario " +ID+" en Activity Usuario", Toast.LENGTH_SHORT).show();
+        //Consultar Nombre y Saldo del Usuario
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"administracion", null, 1);
+        SQLiteDatabase bd = admin.getReadableDatabase();
 
-        //Envía mensaje sobre el estado del saldo
+        assert ID != null;
+        if(ID.isEmpty())//Verificamos que no esté vacío el campo
+        {
+            Toast.makeText(this, "Escribe un número primero",Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            @SuppressLint("Recycle") Cursor fila = bd.rawQuery("select nombre, saldo from usuario where id=" + ID, null);
+
+            if (fila.moveToFirst())
+            {   //Assign datos de usuario en Activity
+                Name.setText(fila.getString(fila.getColumnIndex("nombre")));
+                Saldo.setText(fila.getString(fila.getColumnIndex("saldo")));
+                //Convertimos el Saldo total a Entero
+                String total  = fila.getString(fila.getColumnIndex("saldo"));
+                numtotal = Integer.parseInt(total);
+            } else
+                Toast.makeText(this, "No existe usuario con el ID: "+ID,Toast.LENGTH_SHORT).show();
+            bd.close();
+        }
+
+        //Obtiene gastos del Mes
+        AdminSQLiteOpenHelper admin2 = new AdminSQLiteOpenHelper(this,"Tabla2", null, 1);
+        SQLiteDatabase bd2 = admin2.getReadableDatabase();
+
+        if(ID.isEmpty())
+        {
+            Toast.makeText(this, "Ingresa una entrada nueva",Toast.LENGTH_SHORT).show();
+        }
+        else{
+            //Cursor fila = bd2.rawQuery("SELECT costo FROM gastos", null);
+            //Consultar el gasto del mes actual
+            //Cursor fila = bd2.rawQuery("SELECT costo FROM gastos WHERE 'fecha LIKE '__%"+subFecha+"%__'", null);
+            Cursor fila = bd2.rawQuery("SELECT costo FROM gastos WHERE fecha LIKE '__%"+subFecha+"%__' AND id="+ID, null);
+            if (fila.moveToFirst())
+            {
+                do{
+                    //Obtiene todos los pagos hechos y los acumula
+                    String costo  = fila.getString(fila.getColumnIndex("costo"));
+                    int numcosto = Integer.parseInt(costo);
+                    sumatoria+=numcosto;
+                    String resultado= Integer.toString(sumatoria); //Acumulamos los gastos del mes
+                    Gasto.setText(resultado);
+                }while(fila.moveToNext());
+            } else
+                Toast.makeText(this, "Ingresa una nueva entrada: ",Toast.LENGTH_SHORT).show();
+            bd.close();
+        }
+
+        //Muestra Alerta sobre el estado del saldo
         if(sumatoria<(numtotal-100))
             Alert.setText("");
         else
         if(sumatoria>numtotal)
-            Alert.setText("¡Saldo Rebasado!");
+            Alert.setText("@string/alert_saldoRebasado_string");
         else
-            Alert.setText("¡Se termina tu saldo!");
+            Alert.setText("@string/alert_pocoSaldo_string");
     }
-
-    //Cálculo de ingresos
     // Método para añadir ingresos
     @SuppressLint("SetTextI18n")
-    public void sumar(View v)
+    public void Add(View v)
     {
+        //Obtiene lo ingresado por el usuario
         String periodico = IngresoPeriodico.getText().toString();
         String saldo = IngresoEventual.getText().toString();
         String saldoFinal =Saldo.getText().toString();
 
-        //Conversión a enteros
+        //Convierte a Entero
         numEventual = Integer.parseInt(periodico);
         numPeriodico = Integer.parseInt(saldo);
+        //Convertimos el saldo del usuario a Entero
         int saldoFinalNum = Integer.parseInt(saldoFinal);
 
-        //Suma de cantidades
+        //Sumo las cantidades
         int addition =numEventual+numPeriodico+saldoFinalNum;
 
         Intent intent = getIntent();
-        String ID = intent.getStringExtra(MainActivity.ID_USUARIO);
+        String ID = intent.getStringExtra(ID_USUARIO);
 
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"administracion", null, 1);
         SQLiteDatabase bd = admin.getReadableDatabase();
 
         ContentValues registro = new ContentValues();
 
-        //Actualization de nuevo Saldo
+        //Actualiza con el Nuevo Saldo
         registro.put("saldo", addition);
 
         if(IngresoPeriodico.getText().toString().isEmpty() || IngresoEventual.getText().toString().isEmpty())
@@ -113,7 +162,7 @@ public class Usuario extends AppCompatActivity
             else
                 Toast.makeText(this, "No se pudo sumar", Toast.LENGTH_SHORT).show();
         }
-        Saldo.setText(""+ addition);
+        Saldo.setText(""+addition);
 
         IngresoEventual.setText("0");
         IngresoPeriodico.setText("0");
@@ -125,53 +174,50 @@ public class Usuario extends AppCompatActivity
         if(sumatoria>numtotal)
             Alert.setText("@string/alert_saldoRebasado_string");
         else
-            Alert.setText("¡@string/alert_pocoSaldo_string");
+            Alert.setText("@string/alert_pocoSaldo_string");
     }
     //Abre Activity Cuenta
-    public void cuenta(View v)
+    public void Account(View v)
     {
         Intent intent = getIntent();
-        String ID = intent.getStringExtra(MainActivity.ID_USUARIO);
+        String ID = intent.getStringExtra(ID_USUARIO);
 
         Intent ven=new Intent(this,Cuenta.class);
 
-        ven.putExtra(MainActivity.ID_USUARIO, ID);
+        ven.putExtra(ID_USUARIO, ID);
         startActivity(ven);
     }
     //Abre Activity Configuración
-    public void configuracion(View v)
+    public void Settings(View v)
     {
         Intent intent = getIntent();
-        String ID = intent.getStringExtra(MainActivity.ID_USUARIO);
+        String ID = intent.getStringExtra(ID_USUARIO);
 
         Intent ven=new Intent(this,Configuracion.class);
-        ven.putExtra(MainActivity.ID_USUARIO, ID);
+        ven.putExtra(ID_USUARIO, ID);
         startActivity(ven);
     }
     //Botón Salir
-    public void salir(View v)
+    public void Exit(View v)
     {
         Intent ven=new Intent(this,MainActivity.class);
         startActivity(ven);
         this.finish();
     }
     //Abre la Activity de Entrada de Gastos
-    public void entrada(View v)
+    public void Entry(View v)
     {
         Intent intent = getIntent();
-        String ID = intent.getStringExtra(MainActivity.ID_USUARIO);
+        String ID = intent.getStringExtra(ID_USUARIO);
 
         Intent ven=new Intent(this,Entrada.class);
-        ven.putExtra(MainActivity.ID_USUARIO, ID);
+        ven.putExtra(ID_USUARIO, ID);
         startActivity(ven);
     }
     //Abre Activity Consultar
-    public void consultar(View v)
+    public void Consult(View v)
     {
-        Intent intent = getIntent();
-        String ID = intent.getStringExtra(MainActivity.ID_USUARIO);
         Intent ven=new Intent(this,Consultar.class);
-        ven.putExtra(MainActivity.ID_USUARIO,ID);
         startActivity(ven);
     }
 }

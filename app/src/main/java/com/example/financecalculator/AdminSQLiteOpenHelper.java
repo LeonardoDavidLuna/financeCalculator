@@ -1,10 +1,15 @@
 package com.example.financecalculator;
 
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.content.ContentValues;
+import static com.example.financecalculator.MainActivity.ID_USUARIO;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,15 +40,14 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper
     }
     //Filtra ListView por Todo
     @SuppressLint("Range")
-    public ArrayList fillPaymentList()
+    public ArrayList fillPaymentList(String ID)
     {
         ArrayList<String> list = new ArrayList<>();
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor registers = database.rawQuery("SELECT * FROM gastos",null);
+        Cursor registers = database.rawQuery("SELECT * FROM gastos where ID="+ID,null);
         if(registers.moveToFirst())
         {
             do{
-                //etNumber.setText(fila.getString(0));
                 list.add(registers.getString(registers.getColumnIndex("id")));
                 list.add(registers.getString(registers.getColumnIndex("categoria")));
                 list.add(registers.getString(registers.getColumnIndex("fecha")));

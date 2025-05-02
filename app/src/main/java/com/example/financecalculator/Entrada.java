@@ -1,7 +1,7 @@
 package com.example.financecalculator;
 
 import static android.widget.Toast.makeText;
-
+import static com.example.financecalculator.MainActivity.ID_USUARIO;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -17,7 +17,6 @@ import java.util.Date;
 
 public class Entrada extends AppCompatActivity
 {
-    public final static String ID="";
     private EditText etDate, etPurchase, etCost, etCategory;
     long today = System.currentTimeMillis();
     Date fecha2 = new Date(today);
@@ -39,7 +38,9 @@ public class Entrada extends AppCompatActivity
         etCost = findViewById(R.id.editCosto);
         etCategory = findViewById(R.id.editCategoria);
 
-        /*Intent intent = getIntent(); String numero = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);*/
+        //Obtiene ID de la Main Activity
+        Intent intent = getIntent();
+        String ID = intent.getStringExtra(MainActivity.ID_USUARIO);
 
         long today = System.currentTimeMillis();
         Date fecha2 = new Date(today);
@@ -56,18 +57,20 @@ public class Entrada extends AppCompatActivity
 
         SQLiteDatabase bd = admin.getWritableDatabase();
 
-        String fecha  = etDate.getText().toString();
-        String compra = etPurchase.getText().toString();
-        String costo  = etCost.getText().toString();
-        String categoria  = etCategory.getText().toString();
+        String fecha    = etDate.getText().toString();
+        String rubro   = etPurchase.getText().toString();
+        String costo    = etCost.getText().toString();
+        String categoria= etCategory.getText().toString();
 
         ContentValues registro = new ContentValues();
         registro.put("fecha", fecha);
-        registro.put("compra", compra);
+        registro.put("rubro", rubro);
         registro.put("costo", costo);
         registro.put("categoria", categoria);
 
-        if(etDate.getText().toString().isEmpty() || etPurchase.getText().toString().isEmpty() || etCost.getText().toString().isEmpty())
+        if(     etDate.getText().toString().isEmpty() ||
+                etPurchase.getText().toString().isEmpty() ||
+                etCost.getText().toString().isEmpty())
         {
             makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show();
         }
@@ -91,7 +94,7 @@ public class Entrada extends AppCompatActivity
 
         //Elimina todos los datos de la tabla gastos.
         //int cant =
-         bd.delete("gastos", null, null);
+        bd.delete("gastos", null, null);
         bd.close();
 
         etDate.setText(salida);
@@ -107,7 +110,6 @@ public class Entrada extends AppCompatActivity
         SQLiteDatabase bd = admin.getWritableDatabase();
 
         //Filtra la fecha para borrar
-        //int cant =
         bd.delete("gastos" , "fecha LIKE '__%"+subFecha+"%__'", null);
         bd.close();
 
@@ -120,10 +122,10 @@ public class Entrada extends AppCompatActivity
     public void back(View v)
     {
         Intent intent = getIntent();
-        String id = intent.getStringExtra(MainActivity.ID_USUARIO);
+        String ID = intent.getStringExtra(MainActivity.ID_USUARIO);
 
         Intent ven=new Intent(this,Usuario.class);
-        ven.putExtra(ID, id);
+        ven.putExtra(ID_USUARIO, ID);
         startActivity(ven);
         this.finish();
     }

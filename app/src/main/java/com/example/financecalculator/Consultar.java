@@ -1,7 +1,9 @@
 package com.example.financecalculator;
 
+import static com.example.financecalculator.MainActivity.ID_USUARIO;
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -28,12 +30,22 @@ public class Consultar extends AppCompatActivity
         entry = findViewById(R.id.editEntry);
         lvA = findViewById(R.id.listItems);
         Notice = findViewById(R.id.eti_Notice);
+
+        //Obtiene ID de la Main Activity
+        Intent intent = getIntent();
+        String ID = intent.getStringExtra(MainActivity.ID_USUARIO);
+
+        Toast.makeText(this, "El ID del usuario en Consultar es: "+ID,Toast.LENGTH_SHORT).show();
     }
     //Consulta Todos los Gastos
     public void getAllPayments(View v)
     {
+        //Obtiene ID de la Main Activity
+        Intent intent = getIntent();
+        String ID = intent.getStringExtra(MainActivity.ID_USUARIO);
+
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "Tabla2", null, 1);
-        list = admin.fillPaymentList();
+        list = admin.fillPaymentList(ID);
         adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
         lvA.setAdapter(adapter);
         //Muestra mensaje de qué tipo de consulta se realizó
@@ -42,6 +54,10 @@ public class Consultar extends AppCompatActivity
     //Filtra datos por Mes
     public void getMonthPayments(View v)
     {
+        //Obtiene ID de la Main Activity
+        Intent intent = getIntent();
+        String ID = intent.getStringExtra(MainActivity.ID_USUARIO);
+
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "Tabla2", null, 1);
         list = admin.fillPaymentListByMonth();
         adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);

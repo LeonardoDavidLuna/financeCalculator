@@ -1,7 +1,6 @@
 package com.example.financecalculator;
 
 import static com.example.financecalculator.MainActivity.ID_USUARIO;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
@@ -21,14 +20,16 @@ public class Cuenta extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cuenta);
 
+        //Obtiene ID de la Main Activity
+        Intent intent = getIntent();
+        String ID = intent.getStringExtra(MainActivity.ID_USUARIO);
+
         TextView etNumber = findViewById(R.id.etiNumber);
         TextView etName = findViewById(R.id.etiName);
         TextView etSaldo = findViewById(R.id.etiSaldo);
         TextView etEmail = findViewById(R.id.etiEmail);
         TextView etPassword = findViewById(R.id.etiPassword);
 
-        Intent intent = getIntent();
-        String ID = intent.getStringExtra(MainActivity.ID_USUARIO);
         Toast.makeText(this, "El ID del usuario en Cuenta es: "+ID,Toast.LENGTH_SHORT).show();
 
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"administracion", null, 1);
@@ -53,10 +54,10 @@ public class Cuenta extends AppCompatActivity {
     public void back(View v)
     {
         Intent intent = getIntent();
-        String id = intent.getStringExtra(ID_USUARIO);
+        String ID = intent.getStringExtra(ID_USUARIO);
 
         Intent ven=new Intent(this,Usuario.class);
-        ven.putExtra(ID_USUARIO, id);
+        ven.putExtra(ID_USUARIO, ID);
         startActivity(ven);
         this.finish();
     }
