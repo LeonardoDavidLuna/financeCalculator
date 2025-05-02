@@ -14,7 +14,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity
 {
     private EditText etNumber, etPassword;
-    public final static String EXTRA_MESSAGE="";
+    public final static String ID_USUARIO="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -44,23 +44,23 @@ public class MainActivity extends AppCompatActivity
         }
         else
         {//Se consulta por medio de número y contraseña.
-            @SuppressLint("Recycle") Cursor fila = bd.rawQuery("select numero, contraseña, nombre from usuario where numero = '"+number+"' and contraseña ='"+password+"'",null);
+            @SuppressLint("Recycle") Cursor fila = bd.rawQuery("select id, numero, contraseña from usuario where numero = '"+number+"' and contraseña ='"+password+"'",null);
 
             if (fila.moveToFirst())
             {
                 //Guarda el id para usarse después
-                //String nombre = fila.getString(fila.getColumnIndexOrThrow("nombre"));
-                String num = fila.getString(fila.getColumnIndexOrThrow("numero"));
-                String pass = fila.getString(fila.getColumnIndexOrThrow("contraseña"));
-                //Toast.makeText(this, "¡Tu Nombre es:"+nombre,Toast.LENGTH_SHORT).show();
+                String id   = fila.getString(fila.getColumnIndexOrThrow("id"));
+                String numDB  = fila.getString(fila.getColumnIndexOrThrow("numero"));
+                String passDB = fila.getString(fila.getColumnIndexOrThrow("contraseña"));
+                Toast.makeText(this, "¡Tu id es: "+id,Toast.LENGTH_SHORT).show();
 
                 //Valida credenciales
-                if (number.equals(num) && password.equals(pass))
+                if (number.equals(numDB) && password.equals(passDB))
                 {
                     bd.close();
                     //Inicia vista de Usuario
                     Intent ven = new Intent(this, Usuario.class);
-                    ven.putExtra(EXTRA_MESSAGE, num);
+                    ven.putExtra(ID_USUARIO, id);
                     startActivity(ven);
                     this.finish();
                 }

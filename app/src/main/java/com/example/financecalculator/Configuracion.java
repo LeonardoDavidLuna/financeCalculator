@@ -2,6 +2,9 @@ package  com.example.financecalculator;
 
 import static android.widget.Toast.makeText;
 
+//import static com.example.financecalculator.Usuario.ID_USUARIO;
+import static com.example.financecalculator.MainActivity.ID_USUARIO;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,18 +19,21 @@ import android.widget.Toast;
 
 public class Configuracion extends AppCompatActivity
 {
-    public final static String NUMERO="";
-    
+
+    //public final static String ID="";
     private TextView etNumber;
     private EditText etName, etSaldo, etEmail, etPassword;
+    //String id ="";
+    Intent intent = getIntent();
+    //String ID = intent.getStringExtra(MainActivity.ID_USUARIO);
     
     @SuppressLint("Range")
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
         setContentView(R.layout.activity_configuracion);
+        String ID = MainActivity.ID_USUARIO;
 
         etNumber    = findViewById(R.id.edit_Number);
         etName      = findViewById(R.id.edit_Name);
@@ -35,27 +41,28 @@ public class Configuracion extends AppCompatActivity
         etEmail     = findViewById(R.id.edit_Email);
         etPassword  = findViewById(R.id.edit_Password);
 
-        Intent intent = getIntent();
-        String numero = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        //Intent intent = getIntent();
+        //String numero = intent.getStringExtra(MainActivity.ID_USUARIO);
 
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"administracion", null, 1);
         SQLiteDatabase bd = admin.getReadableDatabase();
 
-        if(numero != null && numero.isEmpty())//Verificamos que no esté vacío el campo
+        if(ID.isEmpty())//Verificamos que no esté vacío el campo
         {
-            makeText(this, "Escribe un número primero",Toast.LENGTH_SHORT).show();
+            makeText(this, "Tu ID es: "+ID,Toast.LENGTH_SHORT).show();
         }
         else{
-            @SuppressLint("Recycle") Cursor fila = bd.rawQuery("select numero, nombre, saldo, correo, contraseña from usuario where numero=" + numero, null);
+            @SuppressLint("Recycle") Cursor fila = bd.rawQuery("select id, numero, nombre, saldo, correo, contraseña from usuario where id=" + ID, null);
             if (fila.moveToFirst())
             {
+                ID = fila.getString(fila.getColumnIndexOrThrow("id"));
                 etNumber.setText(fila.getString(fila.getColumnIndex("numero")));
                 etName.setText(fila.getString(fila.getColumnIndex("nombre")));
                 etSaldo.setText(fila.getString(fila.getColumnIndex("saldo")));
                 etEmail.setText(fila.getString(fila.getColumnIndex("correo")));
                 etPassword.setText(fila.getString(fila.getColumnIndex("contraseña")));
             } else
-                makeText(this, "No existe usuario con el número: "+numero,Toast.LENGTH_SHORT).show();
+                makeText(this, "No existe usuario con el ID: "+ID,Toast.LENGTH_SHORT).show();
             bd.close();
         }
     }
@@ -64,7 +71,8 @@ public class Configuracion extends AppCompatActivity
     {
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"administracion", null, 1);
         SQLiteDatabase bd = admin.getWritableDatabase();
-        String numero = etNumber.getText().toString();
+        //String numero = etNumber.getText().toString();
+        //String ID   = admin.getString(admin.getColumnIndexOrThrow("id"));
 
         if(etNumber.getText().toString().isEmpty())
         {
@@ -72,7 +80,7 @@ public class Configuracion extends AppCompatActivity
         }else
         {
             //Se consulta el usuario para validar su existencia
-            int cant = bd.delete("usuario", "numero=" + numero, null);
+            int cant = bd.delete("usuario", "id=" + ID_USUARIO, null);
             bd.close();
             //Limpia los campos después borrar
             etNumber.setText("");
@@ -128,10 +136,10 @@ public class Configuracion extends AppCompatActivity
     public void back(View v)
     {
         Intent intent = getIntent();
-        String numero = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        String ID = intent.getStringExtra(MainActivity.ID_USUARIO);
 
         Intent ven=new Intent(this,Usuario.class);
-        ven.putExtra(NUMERO, numero);
+        ven.putExtra(ID_USUARIO, ID);
         startActivity(ven);
         this.finish();
     }

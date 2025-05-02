@@ -17,7 +17,7 @@ import java.util.Date;
 
 public class Entrada extends AppCompatActivity
 {
-    public final static String NUMERO="";
+    public final static String ID="";
     private EditText etDate, etPurchase, etCost, etCategory;
     long today = System.currentTimeMillis();
     Date fecha2 = new Date(today);
@@ -120,10 +120,10 @@ public class Entrada extends AppCompatActivity
     public void back(View v)
     {
         Intent intent = getIntent();
-        String numero = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        String id = intent.getStringExtra(MainActivity.ID_USUARIO);
 
         Intent ven=new Intent(this,Usuario.class);
-        ven.putExtra(NUMERO, numero);
+        ven.putExtra(ID, id);
         startActivity(ven);
         this.finish();
     }

@@ -23,7 +23,8 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper
         //Sentencias para crear tabla usuario (id, número, nombre, saldo, correo, contraseña)
         //Sentencias para crear tabla gastos  (id, fecha, compra, costo, categoría)
         db.execSQL("CREATE TABLE usuario(id integer PRIMARY KEY AUTOINCREMENT NOT NULL, numero integer, nombre text, saldo integer, correo text, contraseña text)");
-        db.execSQL("CREATE TABLE gastos (id integer PRIMARY KEY AUTOINCREMENT NOT NULL, fecha text, compra text, costo integer, categoria text)");
+        //db.execSQL("CREATE TABLE gastos (id integer PRIMARY KEY AUTOINCREMENT NOT NULL, fecha text, compra text, costo integer, categoria text)");
+        db.execSQL("CREATE TABLE gastos (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, fecha TEXT, rubro TEXT, costo INTEGER, categoria TEXT, usuario_id INTEGER, FOREIGN KEY (usuario_id) REFERENCES usuario(id))");
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int version1, int version2)
