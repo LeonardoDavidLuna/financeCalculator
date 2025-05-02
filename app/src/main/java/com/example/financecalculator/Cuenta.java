@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 public class Cuenta extends AppCompatActivity {
 
+    @SuppressLint("Range")
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -39,13 +40,12 @@ public class Cuenta extends AppCompatActivity {
             @SuppressLint("Recycle") Cursor fila = bd.rawQuery("select numero, nombre, saldo, correo, contraseña from usuario where numero=" + numero, null);
             if (fila.moveToFirst())
             {
-                etNumber.setText(fila.getString(0));
-                etName.setText(fila.getString(1));
-                etSaldo.setText(fila.getString(2));
-                etEmail.setText(fila.getString(3));
-                etPassword.setText(fila.getString(4));
+                etNumber.setText(fila.getString(fila.getColumnIndex("numero")));
+                etName.setText(fila.getString(fila.getColumnIndex("nombre")));
+                etSaldo.setText(fila.getString(fila.getColumnIndex("saldo")));
+                etEmail.setText(fila.getString(fila.getColumnIndex("correo")));
+                etPassword.setText(fila.getString(fila.getColumnIndex("contraseña")));
                 bd.close();
-
             } else
                 Toast.makeText(this, "No existe usuario con el número: "+numero,Toast.LENGTH_SHORT).show();
             bd.close();
