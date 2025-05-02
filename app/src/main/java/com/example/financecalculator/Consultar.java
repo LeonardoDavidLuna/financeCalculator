@@ -37,7 +37,7 @@ public class Consultar extends AppCompatActivity
         adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
         lvA.setAdapter(adapter);
         //Muestra mensaje de qué tipo de consulta se realizó
-        Notice.setText(R.string.txt_allEntries_string);
+        Notice.setText(R.string.txt_allEntries_string);//"Todos los gastos"
     }
     //Filtra datos por Mes
     public void getMonthPayments(View v)
@@ -46,7 +46,7 @@ public class Consultar extends AppCompatActivity
         list = admin.fillPaymentListByMonth();
         adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
         lvA.setAdapter(adapter);
-        Notice.setText(R.string.txt_month_string);
+        Notice.setText(R.string.txt_month_string); //"Mes"
     }
     //Filtra datos por Fecha
     public void getPaymentsByDate(View v)

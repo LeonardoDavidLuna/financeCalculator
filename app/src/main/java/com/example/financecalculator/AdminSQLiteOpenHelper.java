@@ -33,6 +33,7 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper
         onCreate(db);
     }
     //Filtra ListView por Todo
+    @SuppressLint("Range")
     public ArrayList fillPaymentList()
     {
         ArrayList<String> list = new ArrayList<>();
@@ -41,15 +42,18 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper
         if(registers.moveToFirst())
         {
             do{
-                list.add(registers.getString(1));
-                list.add(registers.getString(2));
-                list.add(registers.getString(3));
-                list.add(registers.getString(4));
+                //etNumber.setText(fila.getString(0));
+                list.add(registers.getString(registers.getColumnIndex("id")));
+                list.add(registers.getString(registers.getColumnIndex("categoria")));
+                list.add(registers.getString(registers.getColumnIndex("fecha")));
+                list.add(registers.getString(registers.getColumnIndex("compra")));
+                list.add(registers.getString(registers.getColumnIndex("costo")));
             }while(registers.moveToNext());
         }
         return list;
     }
     //Consultar por Mes
+    @SuppressLint("Range")
     public ArrayList fillPaymentListByMonth()
     {
         //Fecha para consultar
@@ -67,15 +71,17 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper
         if(registers.moveToFirst())
         {
             do{
-                list.add(registers.getString(1));
-                list.add(registers.getString(2));
-                list.add(registers.getString(3));
-                list.add(registers.getString(4));
+                list.add(registers.getString(registers.getColumnIndex("id")));
+                list.add(registers.getString(registers.getColumnIndex("categoria")));
+                list.add(registers.getString(registers.getColumnIndex("fecha")));
+                list.add(registers.getString(registers.getColumnIndex("compra")));
+                list.add(registers.getString(registers.getColumnIndex("costo")));
             }while(registers.moveToNext());
         }
         return list;
     }
     //Filtra la ListView por Fecha
+    @SuppressLint("Range")
     public ArrayList fillPaymentListByDate(String consulta)
     {
         ArrayList<String> list = new ArrayList<>();
@@ -84,15 +90,17 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper
         if(registers.moveToFirst())
         {
             do{
-                list.add(registers.getString(1));
-                list.add(registers.getString(2));
-                list.add(registers.getString(3));
-                list.add(registers.getString(4));
+                list.add(registers.getString(registers.getColumnIndex("id")));
+                list.add(registers.getString(registers.getColumnIndex("categoria")));
+                list.add(registers.getString(registers.getColumnIndex("fecha")));
+                list.add(registers.getString(registers.getColumnIndex("compra")));
+                list.add(registers.getString(registers.getColumnIndex("costo")));
             }while(registers.moveToNext());
         }
         return list;
     }
     //Filtra la ListView por Compra
+    @SuppressLint("Range")
     public ArrayList fillPaymentListByEntry(String consulta)
     {
         ArrayList<String> list = new ArrayList<>();
@@ -101,10 +109,11 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper
         if(registers.moveToFirst())
         {
             do{
-                list.add(registers.getString(1));
-                list.add(registers.getString(2));
-                list.add(registers.getString(3));
-                list.add(registers.getString(4));
+                list.add(registers.getString(registers.getColumnIndex("id")));
+                list.add(registers.getString(registers.getColumnIndex("categoria")));
+                list.add(registers.getString(registers.getColumnIndex("fecha")));
+                list.add(registers.getString(registers.getColumnIndex("compra")));
+                list.add(registers.getString(registers.getColumnIndex("costo")));
             }while(registers.moveToNext());
         }
         return list;
