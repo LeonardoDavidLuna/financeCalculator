@@ -42,7 +42,7 @@ public class Usuario extends AppCompatActivity
         Intent intent = getIntent();
         String ID = intent.getStringExtra(MainActivity.ID_USUARIO);
 
-        Toast.makeText(this, "El ID del usuario en Usuario es: "+ID,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "El ID del usuario en Usuario es: "+ID,Toast.LENGTH_SHORT).show();
         //Obtiene Fecha Actual
         Date d =new Date();
         @SuppressLint("SimpleDateFormat") SimpleDateFormat fecha=new SimpleDateFormat("d, MMMM 'del' yyyy");
@@ -92,9 +92,6 @@ public class Usuario extends AppCompatActivity
             Toast.makeText(this, "Ingresa una entrada nueva",Toast.LENGTH_SHORT).show();
         }
         else{
-            //Cursor fila = bd2.rawQuery("SELECT costo FROM gastos", null);
-            //Consultar el gasto del mes actual
-            //Cursor fila = bd2.rawQuery("SELECT costo FROM gastos WHERE 'fecha LIKE '__%"+subFecha+"%__'", null);
             Cursor fila = bd2.rawQuery("SELECT costo FROM gastos WHERE fecha LIKE '__%"+subFecha+"%__' AND id="+ID, null);
             if (fila.moveToFirst())
             {
@@ -197,13 +194,6 @@ public class Usuario extends AppCompatActivity
         ven.putExtra(ID_USUARIO, ID);
         startActivity(ven);
     }
-    //Botón Salir
-    public void Exit(View v)
-    {
-        Intent ven=new Intent(this,MainActivity.class);
-        startActivity(ven);
-        this.finish();
-    }
     //Abre la Activity de Entrada de Gastos
     public void Entry(View v)
     {
@@ -217,7 +207,18 @@ public class Usuario extends AppCompatActivity
     //Abre Activity Consultar
     public void Consult(View v)
     {
+        Intent intent = getIntent();
+        String ID = intent.getStringExtra(ID_USUARIO);
+
         Intent ven=new Intent(this,Consultar.class);
+        ven.putExtra(ID_USUARIO, ID);
         startActivity(ven);
+    }
+    //Botón Salir
+    public void Exit(View v)
+    {
+        Intent ven=new Intent(this,MainActivity.class);
+        startActivity(ven);
+        this.finish();
     }
 }

@@ -30,7 +30,7 @@ public class Cuenta extends AppCompatActivity {
         TextView etEmail = findViewById(R.id.etiEmail);
         TextView etPassword = findViewById(R.id.etiPassword);
 
-        Toast.makeText(this, "El ID del usuario en Cuenta es: "+ID,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "El ID del usuario en Cuenta es: "+ID,Toast.LENGTH_SHORT).show();
 
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,"administracion", null, 1);
         SQLiteDatabase bd = admin.getReadableDatabase();

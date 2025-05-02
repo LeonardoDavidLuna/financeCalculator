@@ -1,15 +1,10 @@
 package com.example.financecalculator;
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.content.Intent;
-import android.content.ContentValues;
-import static com.example.financecalculator.MainActivity.ID_USUARIO;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,9 +21,8 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper
     public void onCreate(SQLiteDatabase db)
     {
         //Sentencias para crear tabla usuario (id, número, nombre, saldo, correo, contraseña)
-        //Sentencias para crear tabla gastos  (id, fecha, compra, costo, categoría)
         db.execSQL("CREATE TABLE usuario(id integer PRIMARY KEY AUTOINCREMENT NOT NULL, numero integer, nombre text, saldo integer, correo text, contraseña text)");
-        //db.execSQL("CREATE TABLE gastos (id integer PRIMARY KEY AUTOINCREMENT NOT NULL, fecha text, compra text, costo integer, categoria text)");
+        //db.execSQL("CREATE TABLE gastos (id , fecha, rubro, costo, categoria, usuario_id)");
         db.execSQL("CREATE TABLE gastos (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, fecha TEXT, rubro TEXT, costo INTEGER, categoria TEXT, usuario_id INTEGER, FOREIGN KEY (usuario_id) REFERENCES usuario(id))");
     }
     @Override
@@ -48,10 +42,9 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper
         if(registers.moveToFirst())
         {
             do{
-                list.add(registers.getString(registers.getColumnIndex("id")));
                 list.add(registers.getString(registers.getColumnIndex("categoria")));
                 list.add(registers.getString(registers.getColumnIndex("fecha")));
-                list.add(registers.getString(registers.getColumnIndex("compra")));
+                list.add(registers.getString(registers.getColumnIndex("rubro")));
                 list.add(registers.getString(registers.getColumnIndex("costo")));
             }while(registers.moveToNext());
         }
@@ -59,7 +52,7 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper
     }
     //Consultar por Mes
     @SuppressLint("Range")
-    public ArrayList fillPaymentListByMonth()
+    public ArrayList fillPaymentListByMonth(String ID)
     {
         //Fecha para consultar
         long now = System.currentTimeMillis();
@@ -72,14 +65,13 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper
 
         ArrayList<String> list = new ArrayList<>();
         SQLiteDatabase database = this.getWritableDatabase();
-        @SuppressLint("Recycle") Cursor registers = database.rawQuery("SELECT * FROM gastos WHERE fecha LIKE '__%"+subDate+"%__'", null);
+        @SuppressLint("Recycle") Cursor registers = database.rawQuery("SELECT * FROM gastos WHERE fecha LIKE '__%"+subDate+"%__' AND id="+ID, null);
         if(registers.moveToFirst())
         {
             do{
-                list.add(registers.getString(registers.getColumnIndex("id")));
                 list.add(registers.getString(registers.getColumnIndex("categoria")));
                 list.add(registers.getString(registers.getColumnIndex("fecha")));
-                list.add(registers.getString(registers.getColumnIndex("compra")));
+                list.add(registers.getString(registers.getColumnIndex("rubro")));
                 list.add(registers.getString(registers.getColumnIndex("costo")));
             }while(registers.moveToNext());
         }
@@ -87,18 +79,17 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper
     }
     //Filtra la ListView por Fecha
     @SuppressLint("Range")
-    public ArrayList fillPaymentListByDate(String consulta)
+    public ArrayList fillPaymentListByDate(String date, String ID)
     {
         ArrayList<String> list = new ArrayList<>();
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor registers = database.rawQuery("SELECT * FROM gastos WHERE fecha='"+consulta+"'",null);
+        Cursor registers = database.rawQuery("SELECT * FROM gastos WHERE fecha='"+date+"' AND id="+ID,null);
         if(registers.moveToFirst())
         {
             do{
-                list.add(registers.getString(registers.getColumnIndex("id")));
                 list.add(registers.getString(registers.getColumnIndex("categoria")));
                 list.add(registers.getString(registers.getColumnIndex("fecha")));
-                list.add(registers.getString(registers.getColumnIndex("compra")));
+                list.add(registers.getString(registers.getColumnIndex("rubro")));
                 list.add(registers.getString(registers.getColumnIndex("costo")));
             }while(registers.moveToNext());
         }
@@ -106,18 +97,17 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper
     }
     //Filtra la ListView por Compra
     @SuppressLint("Range")
-    public ArrayList fillPaymentListByEntry(String consulta)
+    public ArrayList fillPaymentListByEntry(String entry, String ID)
     {
         ArrayList<String> list = new ArrayList<>();
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor registers = database.rawQuery("SELECT * FROM gastos WHERE compra='"+consulta+"'",null);
+        Cursor registers = database.rawQuery("SELECT * FROM gastos WHERE rubro='"+entry+"' AND id="+ID,null);
         if(registers.moveToFirst())
         {
             do{
-                list.add(registers.getString(registers.getColumnIndex("id")));
                 list.add(registers.getString(registers.getColumnIndex("categoria")));
                 list.add(registers.getString(registers.getColumnIndex("fecha")));
-                list.add(registers.getString(registers.getColumnIndex("compra")));
+                list.add(registers.getString(registers.getColumnIndex("rubro")));
                 list.add(registers.getString(registers.getColumnIndex("costo")));
             }while(registers.moveToNext());
         }
