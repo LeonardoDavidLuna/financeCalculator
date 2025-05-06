@@ -4,6 +4,9 @@ import static android.widget.Toast.makeText;
 import static com.example.financecalculator.MainActivity.ID_USUARIO;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +20,9 @@ import java.util.Date;
 
 public class Entrada extends AppCompatActivity
 {
-    private EditText etDate, etPurchase, etCost, etCategory;
+    private EditText etDate, etPurchase, etCost;
+    private String categoria="";
+
     long today = System.currentTimeMillis();
     Date fecha2 = new Date(today);
     @SuppressLint("SimpleDateFormat")
@@ -36,11 +41,8 @@ public class Entrada extends AppCompatActivity
         etDate = findViewById(R.id.editDate);
         etPurchase = findViewById(R.id.editCompra);
         etCost = findViewById(R.id.editCosto);
-        etCategory = findViewById(R.id.editCategoria);
 
-        //Obtiene ID de la Main Activity
-        Intent intent = getIntent();
-        String ID = intent.getStringExtra(MainActivity.ID_USUARIO);
+        Spinner etSpinner = findViewById(R.id.editCategoria);
 
         long today = System.currentTimeMillis();
         Date fecha2 = new Date(today);
@@ -48,6 +50,25 @@ public class Entrada extends AppCompatActivity
         String salida = df.format(fecha2);
 
         etDate.setText(salida);
+
+        String[] options = {"Ahorros", "Alimentación","Alquiler", "Deudas", "Educación", "Impuestos", "Entretenimiento", "Otros", "Regalos", "Ropa", "Salud", "Seguros", "Servicios", "Transporte", "Viajes"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        etSpinner.setAdapter(adapter);
+        etSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                categoria = parent.getItemAtPosition(position).toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Este método se llama si no se selection ningún elemento
+                // Suede dejarse vacío o mostrar un mensaje.
+                Toast.makeText(Entrada.this, "Nada seleccionado", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     //Guarda un nuevo Gasto
@@ -58,9 +79,8 @@ public class Entrada extends AppCompatActivity
         SQLiteDatabase bd = admin.getWritableDatabase();
 
         String fecha    = etDate.getText().toString();
-        String rubro   = etPurchase.getText().toString();
+        String rubro    = etPurchase.getText().toString();
         String costo    = etCost.getText().toString();
-        String categoria= etCategory.getText().toString();
 
         ContentValues registro = new ContentValues();
         registro.put("fecha", fecha);
@@ -82,7 +102,6 @@ public class Entrada extends AppCompatActivity
             etDate.setText(salida);
             etPurchase.setText("");
             etCost.setText("");
-            etCategory.setText("");
             makeText(this, "Guardado correctamente", Toast.LENGTH_SHORT).show();
         }
     }
@@ -100,7 +119,7 @@ public class Entrada extends AppCompatActivity
         etDate.setText(salida);
         etPurchase.setText("");
         etCost.setText("");
-        etCategory.setText("");
+        //cat.setText("");
         makeText(this, "¡Eliminado Correctamente!", Toast.LENGTH_SHORT).show();
     }
     //Borrar todas las entradas del Mes
